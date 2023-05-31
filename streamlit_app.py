@@ -44,3 +44,7 @@ my_cur.execute("select * from demo_db.public.fruit_load_list")  #("SELECT CURREN
 my_data_rows = my_cur.fetchall() # fetchone()
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
+
+add_my_fruit = streamlit.text_input('Which fruit would you like to add?')
+# fruits_to_show = my_fruit_list.append(add_my_fruit)
+# streamlit.dataframe(fruits_to_show)

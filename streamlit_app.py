@@ -1,9 +1,9 @@
 #main python file
 import streamlit
 import pandas
-import requests
-# $ python -m pip install requests
+import requests   # $ python -m pip install requests
 import snowflake.connector
+from urllib.error import URLError
 
 streamlit.title('First Test App')
 streamlit.header('Breakfast Menu')
@@ -37,7 +37,7 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
-
+streamlit.stop()
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from demo_db.public.fruit_load_list")
@@ -49,5 +49,6 @@ add_my_fruit = streamlit.text_input('Which fruit would you like to add?')
 # fruits_to_show = my_fruit_list.append(add_my_fruit)
 streamlit.write('Thanks for adding: ',add_my_fruit)
 # write to Snowflake table
-write(my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()"))
+check_DB = my_cur.execute("SELECT CURRENT_ROLE(), current_database(), current_warehouse()")
+write(check_DB)
 # my_cur.execute("insert into demo_db.public.fruit_load_list values ('from Streamlit')") # $add_my_fruit

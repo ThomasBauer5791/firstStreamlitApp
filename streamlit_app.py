@@ -40,13 +40,14 @@ streamlit.dataframe(fruityvice_normalized)
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-my_cur.execute("select * from demo_db.public.fruit_load_list")  #("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_cur.execute("select * from demo_db.public.fruit_load_list")
 my_data_rows = my_cur.fetchall() # fetchone()
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
 
 add_my_fruit = streamlit.text_input('Which fruit would you like to add?')
 # fruits_to_show = my_fruit_list.append(add_my_fruit)
-streamlit.text(add_my_fruit)
-# write to Snowflake table:
+streamlit.write('Thanks for adding: ',add_my_fruit)
+# write to Snowflake table
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_cur.execute("insert into fruit_load_list values ('from Streamlit')") # $add_my_fruit

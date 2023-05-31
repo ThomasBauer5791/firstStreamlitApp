@@ -26,8 +26,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display the selected lines
 streamlit.dataframe(fruits_to_show)
 
-def get_fruityvice_data (input_fruit_choice)
- # streamlit.write('The user entered ', fruit_choice)
+def get_fruityvice_data (input_fruit_choice):
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + input_fruit_choice)
     # streamlit.text(fruityvice_response.json())
     # displaying the JSON as a table
@@ -38,6 +37,7 @@ def get_fruityvice_data (input_fruit_choice)
 streamlit.header("Fruityvice Fruit Advice!")
 try:
   fruit_choice = streamlit.text_input('What fruit would you like information about?')
+  # streamlit.write('The user entered ', fruit_choice)
   if not fruit_choice:
     streamlit.error("Please enter a fruit to get information")
   else:

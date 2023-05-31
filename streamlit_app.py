@@ -50,4 +50,4 @@ add_my_fruit = streamlit.text_input('Which fruit would you like to add?')
 streamlit.write('Thanks for adding: ',add_my_fruit)
 # write to Snowflake table
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_cur.execute("insert into fruit_load_list values ('from Streamlit')") # $add_my_fruit
+# my_cur.execute("insert into demo_db.public.fruit_load_list values ('from Streamlit')") # $add_my_fruit

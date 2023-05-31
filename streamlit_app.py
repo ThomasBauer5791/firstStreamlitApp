@@ -3,6 +3,7 @@ import streamlit
 import pandas
 import requests
 # $ python -m pip install requests
+import snowflake.connector
 
 streamlit.title('First Test App')
 streamlit.header('Breakfast Menu')

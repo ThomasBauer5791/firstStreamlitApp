@@ -44,7 +44,6 @@ try:
     streamlit.dataframe(get_fruityvice_data(fruit_choice))
 except URLError as e:
   streamlit.error()
-# streamlit.stop()
 
 streamlit.header("The fruit load list contains:")
 # Snowflake related functions:
@@ -61,6 +60,8 @@ if snowlit.button ('get fruit load list:'):
 add_my_fruit = streamlit.text_input('Which fruit would you like to add?')
 # fruits_to_show = my_fruit_list.append(add_my_fruit)
 streamlit.write('Thanks for adding: ',add_my_fruit)
+
+streamlit.stop()
 # write to Snowflake table
 check_DB = my_cur.execute("SELECT CURRENT_ROLE(), current_database(), current_warehouse()")
 write(check_DB)
